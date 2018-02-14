@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crud.dao.UserMapper" >
+<select id = "selectByName" parameterType="java.lang.String" resultType="com.atguigu.crud.bean.User">
+	select * from user where name=#{name}
+</select> 
+<insert id = "addUser" parameterType="com.atguigu.crud.bean.User">
+	insert into user (name, password, salt, head_url,email) values (#{name},#{password},#{salt},#{headUrl},#{email})
+</insert>
+<update id = "UpdateById" parameterType="com.atguigu.crud.bean.User">
+	update user set name=#{name},email=#{email} where id=#{id}
+</update>
+<update id = "UpdatePasswordById" parameterType="com.atguigu.crud.bean.User">
+	update user set password=#{password},salt=#{salt};
+</update>
+<select id = "selectAll" resultType="com.atguigu.crud.bean.User">
+ select * from user
+</select>
+<select id = "selectById" parameterType="java.lang.Integer" resultType="com.atguigu.crud.bean.User">
+	select * from user where id=#{id}
+</select>
+<delete id = "deleteById" parameterType="java.lang.Integer">
+	delete from user where id=#{id}
+</delete>
+<delete id = "deleteByBatch" parameterType="java.util.List">
+	delete from user where id in
+	<foreach collection="list" item="id" separator="," open="(" close=")">
+            #{id}
+    </foreach>
+</delete>
+<select id = "findAllByName" parameterType="java.lang.String" resultType="com.atguigu.crud.bean.User">
+	select * from user where name like '%${value}%'
+</select>
+</mapper>
