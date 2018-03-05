@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crud.dao.AdminLogMapper">
+	<insert id="insertLog" parameterType="com.atguigu.crud.bean.AdminLog">
+		insert into admin_log (adminname,contentlog,createtime) values (#{adminname},#{contentlog},#{createtime})
+	</insert>
+	<select id="selectAll" resultType="com.atguigu.crud.bean.AdminLog">
+		select * from admin_log order by id desc
+	</select>
+	<delete id="removeLog" parameterType="java.lang.Integer">
+		delete from admin_log where id = #{id}
+	</delete>
+</mapper>
